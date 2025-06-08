@@ -1,8 +1,8 @@
 ---
 title: "Counterfactual Explanations for Sustainable Tourism Indicators: Implementation in a Shiny Application"
 subtitle: "XLI Congreso Nacional de Estadística e Investigación Operativa"
-author: "E. López Cano, J. Saugar, C. Lancho Martín, M. Cuesta, I. Martín de Diego, A. Amado"
-institute: "Data Science Laboratory, Universidad Rey Juan Carlos"
+author: "E. López Cano^1^, J. Saugar^1^, C. Lancho Martín^1^, M. Cuesta^2^, I. Martín de Diego^1^, A. Amado^3^"
+institute: "(1) Data Science Laboratory, Universidad Rey Juan Carlos; (2) Universidad Carlos III; (3) Dephimáticas, S.L."
 format: 
   revealjs:
     theme: [solarized, congresos.scss]
@@ -40,10 +40,10 @@ are classified into **Dimensions**.
 
 * Indicators are scaled using a given method (z-score, Min-Max, or distance to a reference value). Let  $x_i$ be such scaled indicators.
 
-* A compound indicator by dimension $y_i$ is computed then as a weighted average:
+* A composite indicator by dimension $y_i$ is computed then as a weighted average:
 
-$$y = \sum w_i x_i$$
-* The Global Sustainable Tourism Indicator (STI) is the weighted average of the $p$ dimensions indicators:
+$$y_j = \sum w_i x_i$$
+* The Global Sustainable Tourism Indicator (STI) is the weighted average of the dimensions indicators:
 
 $$STI = \sum w_j y_j$$
 
@@ -53,6 +53,10 @@ What indicators does a destination need to change in order to improve the STI by
 
 * Find the minimum and plausible changes that can be made to
 the input variables to achieve a desired change in the global indicator.
+
+## Model
+
+??
 
 # Implementation
 
@@ -87,7 +91,7 @@ the input variables to achieve a desired change in the global indicator.
 
 -   Using only Open Source Software, including R
 
-- Product in the market
+- Real knowledge transfer
 
 
 ## Future work
