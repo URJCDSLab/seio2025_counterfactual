@@ -87,7 +87,7 @@ the input variables to achieve a desired change in the global indicator.
 
 ## EVASTUR - Intervention
 
-![](img/evastur3.png){width="70%" fig-align="center"}
+![](img/evastur3.png){width="60%" fig-align="center"}
 
 
 # Conclusions and future work
