@@ -136,9 +136,10 @@ Slides:
 
 **Questions**
 
-Acknowledgements: Spanish Ministry of Science and Innova-
+
+[Acknowledgements: Spanish Ministry of Science and Innova-
 tion, under the Knowledge Generation Projects program: XMIDAS (Ref: PID2021-
-122640OB-100).
+122640OB-100).]{.ack} 
 
 
 
