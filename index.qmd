@@ -1,12 +1,12 @@
 ---
-title: "Cómo usamos R en el DSLAB: ETL, Dashboards, Modelos, y cosas que no imaginas"
-subtitle: "92ª Reunión Grupo de R de Madrid"
-author: "Carmen Lancho y Emilio L. Cano"
+title: "Counterfactual Explanations for Sustainable Tourism Indicators: Implementation in a Shiny Application"
+subtitle: "XLI Congreso Nacional de Estadística e Investigación Operativa"
+author: "E. López Cano, J. Saugar, C. Lancho Martín, M. Cuesta, I. Martín de Diego, A. Amado"
 institute: "Data Science Laboratory, Universidad Rey Juan Carlos"
 format: 
   revealjs:
     theme: [solarized, congresos.scss]
-    footer: "92ª Reunión Grupo de R de Madrid, 30 de octubre 2024"
+    footer: "XLI Congreso SEIO, Lleida 10 de junio 2025"
     logo: img/DSLab_logo.png
     menu:
       numbers: false
@@ -18,158 +18,52 @@ editor:
     wrap: 72
 ---
 
-# Contexto
+# XML & Sustainable Tourism Indicators
 
-## DSLAB 
+## Publication
 
-[DSLAB](https://www.datasciencelab.es/): Grupo de investigación en
-Fundamentos y Aplicaciones de la Ciencia de Datos
+Saugar, J., Lancho, C., Cuesta, M., Cano, E.L., de Diego, I.M., Amado, A. (2025). Counterfactual Explanations for Sustainable Tourism Indicators. In: Julian, V., et al. Intelligent Data Engineering and Automated Learning – IDEAL 2024. IDEAL 2024. Lecture Notes in Computer Science, vol 15346. Springer, Cham. https://doi.org/10.1007/978-3-031-77731-8_20
 
--   Investigación
+## Explainable Machine Learning
 
--   Docencia
+- provide simple explanations on complex Machine Learning (ML) models.
 
--   Proyectos de investigación (con entidades públicas y privadas)
+## Counterfactuals
 
--   Divulgación
+Through understandable "what if" scenarios, counterfactuals explore how changes in the input data affect the results of a model
 
-## Recursos
 
-- GRUPO DE INVESTIGACIÓN DE ALTO RENDIMIENTO EN FUNDAMENTOS Y APLICACIONES DE LA CIENCIA DE DATOS DE LA UNIVERSIDAD REY JUAN CARLOS / FOUNDATIONS AND APPLICATIONS OF DATA SCIENCE GROUP OF UNIVERSIDAD REY JUAN CARLOS
+## Sustainable tourism indicators
 
-- 28 investigadores
+* Indicators such as "Average expense", "Average stay", "Percentage of tourism in GDP", 
+are classified into **Dimensions**.
 
-- Espacios de investigación
+* Indicators are scaled using a given method (z-score, Min-Max, or distance to a reference value). Let  $x_i$ be such scaled indicators.
 
-- Servidores propios
+* A compound indicator by dimension $y_i$ is computed then as a weighted average:
 
-- Infraestructura URJC
+$$y = \sum w_i x_i$$
+* The Global Sustainable Tourism Indicator (STI) is the weighted average of the $p$ dimensions indicators:
 
+$$STI = \sum w_j y_j$$
 
-# Investigación
+## Question to answer
 
-## Artículos recientes
+What indicators does a destination need to change in order to improve the STI by a given amount?
 
--   [CSViz: Class Separability Visualization for
-    high-dimensional datasets](https://link.springer.com/article/10.1007/s10489-023-05149-4)
+* Find the minimum and plausible changes that can be made to
+the input variables to achieve a desired change in the global indicator.
 
-    Repositorio asociado: <https://github.com/URJCDSLab/CSViz>
+# Implementation
 
--  [Importance of Visual Support Through Lipreading in the 
-    Identification of Words in Spanish Language](https://journals.sagepub.com/doi/10.1177/00238309241270741)
+## Context: EVASTUR
 
-    Repositorio asociado: <https://tinyurl.com/4frdbxam>
+-   I+D+i project with the company [Dephimática](https://www.dephimatica.es)
 
-    <!--# https://github.com/URJCDSLab/VisualSupport_Lipreading/blob/main/LipReading_Analyses.md -->
+-   Experts in public statistics
 
-## Proyectos de investigación: COVID
 
--   COVID
-
-![](img/covid_informe.png){fig-align="center" width="500"}
-
-## Proyectos de investigación: Caderas
-
--   Predicción de la capacidad para deambulación al mes de fractura de
-    cadera
-
-    <https://clancho.shinyapps.io/APP_fractura_cadera/>
-
-## Proyectos de investigación: DICYME
-
-
-* Dynamic Industrial Cyber Risk Modelling based on Evidence (DICYME) research project (CPP2021-009025)
-
-
-* Proyecto de colaboración público-privada con DeNexus TECH SL.
-
-* Prototipo dashboard (pendiente de publicar)
-
-* Conexión con MongoDB
-
-* App relacionada: [CRAS](http://gondor.etsii.urjc.es:3804/)
-
-    
-# Docencia
-
-## Asignaturas en abierto
-
-
--   Aprendizaje automático:
-    <https://urjcdslab.github.io/AprendizajeAutomaticoI/>
-
--   Inferencia estadística:
-    <https://urjcdslab.github.io/InferenciaEstadistica/>
-
-## Grados/Master
-
--   Matemáticas, Ciencia e Ingeniería de Datos, Biología, Ingeniería Industrial, Ingeniería de la Ciberseguridad, Inteligencia Artificial, Ingeniería Informática, Diseño y Desarrollo de Videojuegos, Máster Data Science, Máster en Dirección de Turismo Internacional, etc.
-
-
-## Seminarios
-
--   Primer dashboard en Shiny:
-
-    <https://github.com/carmenlancho/Seminario_CienciasSalud>
-
--   Gráficos interactivos en R:
-
-    <https://github.com/carmenlancho/GraficosInteractivosR>
-
-- Generación con R de tablas y gráficos listos para publicar
-  <https://emilopezcano.github.io/seminario_fcs_urjc_2024/>
-  
-
-    
-## Libros CC
-
-- [Estadística Aplicada a las Ciencias y la Ingeniería](https://emilopezcano.github.io/estadistica-ciencias-ingenieria/index.html)
-
-- [Introducción al software estadístico R](https://www.lcano.com/b/iser/_book/)
-
-- Algún otro inacabado, y otros un tanto obsoletos
-
-- Obra colectiva [Fundamentos de ciencia de datos con R](https://cdr-book.github.io) editada por Gema Fernández-Avilés y José María Montero.
-
-## Proyectos docentes
-
--   Proyecto de Innovación Educativa: DSEXAMS
-
-    Paquete de R: <https://github.com/URJCDSLab/dsexams>
-    [Presentación en EDULEARN 23](https://www.lcano.com/p/edulearn23/#/title-slide)
-    
-
-    
-## TFGs
-
-- [placido: un paquete y aplicación shiny para evaluar el contenido efectivo de los envases](https://www.lcano.com/p/seio2023/#/title-slide)
-
-- [Unit testing in Statistical Software: an implementation in the 📦 {SixSigma} R package](https://www.lcano.com/p/seio2022a/#1)
-
-## Apps docentes
-
-- [Probabilidad](https://elcano.shinyapps.io/probability_as_relative_frequency/)
-
-- [Derivada](https://elcano.shinyapps.io/derivada/)
-
-- [Criptografía](https://elcano.shinyapps.io/cesar/)
-
-- [Control de calidad](https://lcano.shinyapps.io/demo-shiny-quality/)
-
-- [Monty Hall](https://elcano.shinyapps.io/monty_hall/)
-
-
-# Transferencia - Casos de éxito
-
-## EVASTUR
-
--   Proyecto con la empresa [Dephimática](https://www.dephimatica.es)
-
--   Especializada en estadística pública
-
--   _Capacity building_ en Ciencia de Datos
-
-- Sistema de indicadores de turismo sostenible: exploración, visualización, análisis
+- Sustainable tourism indicators system: Exploration, Visualization, Analysis
 
 <!-- <img src="img/dephimatica.png" width="50%"/> -->
 
@@ -184,173 +78,32 @@ Fundamentos y Aplicaciones de la Ciencia de Datos
 ![](img/evastur.png){width="70%" fig-align="center"}
 
 
-::: {style="text-align:center"}
-🖥️ Live demo 🤞🏻
-:::
 
+# Conclusions and future work
 
-## EPE Brasil
+## Conclusions
 
--   Weaving Connections: A Comprehensive Diagnosis of Access to and Use of Electricity and Essential Services by Low-Income Population (MRC- SP 0366)
+-   Success story with real impact
 
--   Proyecto de transferencia con MRC Consultants and Advisors (Grupo Veolia)
+-   Using only Open Source Software, including R
 
--   ETL, Modelo de datos, visualización
+- Product in the market
 
--   Indicadores de pobreza energética (UCM)
 
--   Presentado en reunión del G20
+## Future work
 
+-   Include more complex prediction models
 
+-   Give information about the variables that build the indicator
 
+-   Continuous improvement of the app
 
-## OBEPE
+-   Find partners that use the dashboard
 
-![](img/obepe.png){width="70%" fig-align="center"}
 
-[Acknowledgements:]{.ack} 
-![](img/logo_idb.png){height="50"}
-![](img/logo_epe_colors.jpg){height="50"} 
-![](img/logo_mme.png){height="50"}
 
-::: {style="text-align:center"}
-🖥️ Live demo 🤞🏻
-:::
 
-
-## SHAPYPRO
-
-::: columns
-::: {.column width="60%"}
--   [Empresa biotecnológica](https://shapypro.com)
--   Proficiency Testing
--  Asesoría en ciencia de datos, informes parcialmente automatizados.
--   En proceso: paquete y aplicación shiny
-
-<img src="img/shapypro.png" style="width:60%;margin-left:auto;margin-right:auto;display:block;"/>
-
-:::
-
-
-::: {.column width="40%"}
-<blockquote class="twitter-tweet"><p lang="es" dir="ltr">📍ENAC ha concedido recientemente la primera acreditación a <a href="https://twitter.com/shapypro?ref_src=twsrc%5Etfw">@SHAPYPRO</a> como proveedor de ensayos de aptitud de eficacia biocida en productos antisépticos y desinfectantes químicos. Estos ensayos están destinados a la evaluación de los biocidas en base a su actividad (bactericida,… <a href="https://t.co/T2WMrB3EWQ">pic.twitter.com/T2WMrB3EWQ</a></p>&mdash; ENAC (@ENAC_acredita) <a href="https://twitter.com/ENAC_acredita/status/1845762208606642671?ref_src=twsrc%5Etfw">October 14, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-:::
-:::
-
-## IMASDE Agroalimentaria
-
-* <https://e-imasde.eu/language/es/home/>
-
-* TFG aprendizaje automático
-
-* Informes automatizados de I+D+i
-
-* _Capacity building_
-
-::: {style="text-align:center"}
-![](img/imasde.png){width=400px}
-:::
-
-
-## AfCIOT - TiVA indicators
-
--   Joint project with [UNECA](https://www.uneca.org),
-    [WTO](https://www.wto.org), and [OECD](https://www.oecd.org)
-
--   International Trade, Environmental and Employment Indicators
-
--   International and multidisciplinar team
-
--   Industry and product classification, gap estimation, policy
-    simulation and [visualisation]{.red}
-
--   Key result: A [shiny app]{.red} for reporting, visualisation and
-    policy simulation
-
--   Several important challenges for the multinational scope
-
-
-
-
-## AfCIOT - TiVA indicators
-
-![](img/afciot.png){width="70%" fig-align="center"}
-
-[Acknowledgements:]{.ack} ![](img/uneca.png){height="50"}
-![](img/wto.png){height="50"} ![](img/oecd.png){height="50"}
-
-::: {style="text-align:center"}
-🖥️ Live demo 🤞🏻
-:::
-
-## Síagro - Animal production SPC
-
-::: columns
-::: {.column width="40%"}
--   [CRO clinical and nutritional trials](http://www.testsandtrials.com)
--   Shiny app for their customers as a value added service
--   Important \[**productivity improvements**\]
--   Simulation and parameterised reports
-:::
-
-::: {.column width="60%"}
-![](img/testsapp.png)
-
-<img src="img/tests.png" style="width:50%;margin-left:auto;margin-right:auto;display:block;"/>
-
-::: small
-<https://www.siagro.es> \| 🖥️ Live demo 🤞🏻
-:::
-:::
-:::
-
-
-
-## Smart Cities
-
--   Use cases for Tourism, Healthcare, and Infrastructures in Madrid
-    Region
-
--   Coherent step-by-step apps for the use cases (load data -
-    visualisation - modelling - getting results)
-
--   Some use cases with [Shiny]{.red}, other with Python or Power BI
-
--   Example: <http://www.citizenlabhub.es/cu/55>
-
-
-# Conclusiones y trabajo futuro
-
-## Conclusiones
-
--   R nos ayuda en gran diversidad de tareas
-
--   R, R markdown, quarto, shiny favorece y facilita su uso
-
-- Estamos listos para despliegues en producción, sin complejos
-
-
-## Trabajo futuro
-
--   Paquete de R asociado a Tesis doctoral
-
--   Más dashboard
-
--   Mejorar la generación de apuntes con R
-
-- Más proyectos con empresas
-
-- Más proyectos en organismos internacionales
-
-- Nueva tesis doctoral 😉
-
-
-
-
-
-# ¡Gracias!
+# Thanks!
 
 [carmen.lancho\@urjc.es]{.red}
 
@@ -366,12 +119,15 @@ Fundamentos y Aplicaciones de la Ciencia de Datos
 
 
 Slides:
-[https://urjcdslab.github.io/rmadrid92](https://urjcdslab.github.io/rmadrid92)
+[https://urjcdslab.github.io/seio2025_counterfactual](https://urjcdslab.github.io/seio2025_counterfactual)
 
 \
 
-**Preguntas**
+**Questions**
 
+Acknowledgements: Spanish Ministry of Science and Innova-
+tion, under the Knowledge Generation Projects program: XMIDAS (Ref: PID2021-
+122640OB-100).
 
 
 
