@@ -38,14 +38,14 @@ Through understandable "what if" scenarios, counterfactuals explore how changes 
 * Indicators such as "Average expense", "Average stay", "Percentage of tourism in GDP", 
 are classified into **Dimensions**.
 
-* Indicators are scaled using a given method (z-score, Min-Max, or distance to a reference value). Let  $x_i$ be such scaled indicators.
+* Indicators are scaled using a given method (z-score, Min-Max, or distance to a reference value). Let  $x_j$ be such scaled indicators.
 
-* A composite indicator by dimension $y_i$ is computed then as a weighted average:
+* A composite indicator by dimension $y$ is computed then as a weighted average:
 
-$$y_j = \sum w_i x_i$$
+$$y = \sum_{j=1}^{p} w_j x_j$$
 * The Global Sustainable Tourism Indicator (STI) is the weighted average of the dimensions indicators:
 
-$$STI = \sum w_j y_j$$
+$$STI = \sum_{j=1}^{p} w_j x_j$$
 
 ## Question to answer
 
@@ -55,8 +55,21 @@ What indicators does a destination need to change in order to improve the STI by
 the input variables to achieve a desired change in the global indicator.
 
 ## Model
+<div style="font-size: 80%;">
+\begin{align}
+    \min  \quad & \sum_{j=1}^{p} \beta_j + \lambda \sum_{j=1}^{p} \delta_j \label{f_obj} \\
+ \textrm{s.t.} \quad    & y' - y = \sum_{j=1}^{p} w_j (x_j + \beta_j) - \sum_{j=1}^{p} w_j x_j \geq \epsilon \label{y_epsilon}  \\
+%& \beta_j \leq a \cdot f_{std}(x_j), & \forall j = 1,\dots,p \label{beta_std}  \\
+& x_j +  \beta_j \leq 1, & \forall j = 1,\dots,p \label{x_j_max1}  \\
+  & \mu_{l} \leq \sum_{j=1}^{p} \delta_j \leq \mu_{u} \label{num_var_change}   \\
+    &\beta_j \leq a  f_{std}(x_j) \delta_j &  \forall j=1,\dots,p \label{beta_binary} \\
+  % & \delta_j \leq \beta_j \leq m \delta_j &  \forall j=1,\dots,p \label{beta_binary} \\
+  & \delta_j \in \{0,1\} &  \forall j=1,\dots,p  \label{delta_binary} \\
+  &\beta_0, \dots, \beta_p \geq 0, \ \beta_0, \dots, \beta_p \in \mathbb{R} \label{beta_0_real} \\
+    & \lambda \geq 0, \lambda \in \mathbb{R} \label{m_constant_large_enough} 
+\end{align}
+</div>
 
-??
 
 # Implementation
 
