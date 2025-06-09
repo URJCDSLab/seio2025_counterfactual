@@ -38,11 +38,21 @@
 
 /* Establecer color de fondo y texto para todas las diapositivas */
 .reveal {
-  background-color: #F6FCFF;
-  color: #012779;
+  background-color: #F8FFF6;
+  color: #225E2B;
 }
 
-/* Asegurar que el color de texto personalizado se aplique a elementos principales */
 .reveal h1, .reveal h2, .reveal h3, .reveal p, .reveal li {
-  color: #012779;
+  color: #225E2B;
 }
+
+.green-accent {
+  color: #6BBF59;
+  font-weight: bold;
+}
+
+.muted {
+  color: #A0BFA0;
+  font-style: italic;
+}
+
