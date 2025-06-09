@@ -34,6 +34,7 @@ Through understandable "what if" scenarios, counterfactuals explore how changes 
 
 
 ## Sustainable tourism indicators
+<div style="font-size: 70%;">
 
 * Indicators such as "Average expense", "Average stay", "Percentage of tourism in GDP", 
 are classified into **Dimensions**.
@@ -41,24 +42,24 @@ are classified into **Dimensions**.
 * Indicators are scaled using a given method (z-score, Min-Max, or distance to a reference value). Let  $x_j$ be such scaled indicators.
 
 * A composite indicator by dimension $y$ is computed then as a weighted average:
-
 $$y = \sum_{j=1}^{p} w_j x_j$$
 * The Global Sustainable Tourism Indicator (STI) is the weighted average of the dimensions indicators:
+$$STI = \sum_{j=1}^{p} w_j x_j$$ </div>
 
-$$STI = \sum_{j=1}^{p} w_j x_j$$
 
 ## Question to answer
 
 What indicators does a destination need to change in order to improve the STI by a given amount?
 
-* Find the minimum and plausible changes that can be made to
-the input variables to achieve a desired change in the global indicator.
+* Find the minimum and plausible changes $\beta_j$ that can be made to
+the input variables $x_j$ to achieve a desired change $\varepsilon$ in the global indicator $y$:
+$$y' - y = \sum_{j=1}^{p} w_j (x_j + \beta_j) - \sum_{j=1}^{p} w_j x_j \geq \varepsilon$$
 
 ## Model
-<div style="font-size: 80%;">
+<div style="font-size: 70%;">
 \begin{align}
     \min  \quad & \sum_{j=1}^{p} \beta_j + \lambda \sum_{j=1}^{p} \delta_j \label{f_obj} \\
- \textrm{s.t.} \quad    & y' - y = \sum_{j=1}^{p} w_j (x_j + \beta_j) - \sum_{j=1}^{p} w_j x_j \geq \epsilon \label{y_epsilon}  \\
+ \textrm{s.t.} \quad    & y' - y = \sum_{j=1}^{p} w_j (x_j + \beta_j) - \sum_{j=1}^{p} w_j x_j \geq \varepsilon \label{y_epsilon}  \\
 %& \beta_j \leq a \cdot f_{std}(x_j), & \forall j = 1,\dots,p \label{beta_std}  \\
 & x_j +  \beta_j \leq 1, & \forall j = 1,\dots,p \label{x_j_max1}  \\
   & \mu_{l} \leq \sum_{j=1}^{p} \delta_j \leq \mu_{u} \label{num_var_change}   \\
@@ -70,6 +71,22 @@ the input variables to achieve a desired change in the global indicator.
 \end{align}
 </div>
 
+## Model
+<div style="font-size: 60%;">
+- The objective function $\sum_{j=1}^{p} \beta_j + \lambda \sum_{j=1}^{p} \delta_j$ minimizes the changes made over the input variables ($\beta_j$), and the number of variables where a change is made ($\delta_j$). 
+- Constraint $y'-y \geq \varepsilon$ ensures that the new value $y'$ of the indicator has increased in at least $\varepsilon$, addressing the validity property. 
+- To guarantee the plausibility property, constraint $\beta_j \leq a  f_{std}(x_j) \delta_j$ establishes the maximum change admitted in every variable $x_j$ through a function $f_{std}(\cdot)$ of its corresponding standard deviation. $\delta_j \in \{0,1\}$ are binary variables controling which input variables some changes are made. 
+- The actionability property is ensured with constraint $x_j +  \beta_j \leq 1$, which maintains each variable $x_j$ within $[0,1]$. 
+- Constraint $\mu_{l} \leq \sum_{j=1}^{p} \delta_j \leq \mu_{u}$controls the minimum and maximum number of $x_j$ variables where a change is admitted.  
+
+
+The formulation of the problem involves different user-fixed parameters ($\lambda$, $\varepsilon$, $f_{std}(\cdot)$, $\mu_l$, $\mu_u$ and $a$) that allow its adaptation to different scenarios, depending on the domain requirements.
+
+</div>
+
+## Example
+
+![](img/experiments_ideal_conterfactuals.png){width="50%" fig-align="center"}
 
 # Implementation
 

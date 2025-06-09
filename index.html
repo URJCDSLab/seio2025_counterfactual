@@ -346,6 +346,7 @@
 </section>
 <section id="sustainable-tourism-indicators" class="slide level2">
 <h2>Sustainable tourism indicators</h2>
+<div style="font-size: 70%;">
 <ul>
 <li><p>Indicators such as “Average expense”, “Average stay”, “Percentage of tourism in GDP”, are classified into <strong>Dimensions</strong>.</p></li>
 <li><p>Indicators are scaled using a given method (z-score, Min-Max, or distance to a reference value). Let <span class="math inline">\(x_j\)</span> be such scaled indicators.</p></li>
@@ -355,21 +356,23 @@
 <ul>
 <li>The Global Sustainable Tourism Indicator (STI) is the weighted average of the dimensions indicators:</li>
 </ul>
-<p><span class="math display">\[STI = \sum_{j=1}^{p} w_j x_j\]</span></p>
+<span class="math display">\[STI = \sum_{j=1}^{p} w_j x_j\]</span>
+</div>
 </section>
 <section id="question-to-answer" class="slide level2">
 <h2>Question to answer</h2>
 <p>What indicators does a destination need to change in order to improve the STI by a given amount?</p>
 <ul>
-<li>Find the minimum and plausible changes that can be made to the input variables to achieve a desired change in the global indicator.</li>
+<li>Find the minimum and plausible changes <span class="math inline">\(\beta_j\)</span> that can be made to the input variables <span class="math inline">\(x_j\)</span> to achieve a desired change <span class="math inline">\(\varepsilon\)</span> in the global indicator <span class="math inline">\(y\)</span>:</li>
 </ul>
+<p><span class="math display">\[y' - y = \sum_{j=1}^{p} w_j (x_j + \beta_j) - \sum_{j=1}^{p} w_j x_j \geq \varepsilon\]</span></p>
 </section>
 <section id="model" class="slide level2">
 <h2>Model</h2>
-<div style="font-size: 80%;">
+<div style="font-size: 70%;">
 <p><span class="math display">\[\begin{align}
     \min  \quad &amp; \sum_{j=1}^{p} \beta_j + \lambda \sum_{j=1}^{p} \delta_j \label{f_obj} \\
-\textrm{s.t.} \quad    &amp; y' - y = \sum_{j=1}^{p} w_j (x_j + \beta_j) - \sum_{j=1}^{p} w_j x_j \geq \epsilon \label{y_epsilon}  \\
+\textrm{s.t.} \quad    &amp; y' - y = \sum_{j=1}^{p} w_j (x_j + \beta_j) - \sum_{j=1}^{p} w_j x_j \geq \varepsilon \label{y_epsilon}  \\
 %&amp; \beta_j \leq a \cdot f_{std}(x_j), &amp; \forall j = 1,\dots,p \label{beta_std}  \\
 &amp; x_j +  \beta_j \leq 1, &amp; \forall j = 1,\dots,p \label{x_j_max1}  \\
   &amp; \mu_{l} \leq \sum_{j=1}^{p} \delta_j \leq \mu_{u} \label{num_var_change}   \\
@@ -380,7 +383,24 @@
     &amp; \lambda \geq 0, \lambda \in \mathbb{R} \label{m_constant_large_enough}
 \end{align}\]</span></p>
 </div>
-</section></section>
+</section>
+<section id="model-1" class="slide level2">
+<h2>Model</h2>
+<div style="font-size: 60%;">
+<ul>
+<li>The objective function <span class="math inline">\(\sum_{j=1}^{p} \beta_j + \lambda \sum_{j=1}^{p} \delta_j\)</span> minimizes the changes made over the input variables (<span class="math inline">\(\beta_j\)</span>), and the number of variables where a change is made (<span class="math inline">\(\delta_j\)</span>).</li>
+<li>Constraint <span class="math inline">\(y'-y \geq \varepsilon\)</span> ensures that the new value <span class="math inline">\(y'\)</span> of the indicator has increased in at least <span class="math inline">\(\varepsilon\)</span>, addressing the validity property.</li>
+<li>To guarantee the plausibility property, constraint <span class="math inline">\(\beta_j \leq a f_{std}(x_j) \delta_j\)</span> establishes the maximum change admitted in every variable <span class="math inline">\(x_j\)</span> through a function <span class="math inline">\(f_{std}(\cdot)\)</span> of its corresponding standard deviation. <span class="math inline">\(\delta_j \in \{0,1\}\)</span> are binary variables controling which input variables some changes are made.</li>
+<li>The actionability property is ensured with constraint <span class="math inline">\(x_j + \beta_j \leq 1\)</span>, which maintains each variable <span class="math inline">\(x_j\)</span> within <span class="math inline">\([0,1]\)</span>.</li>
+<li>Constraint <span class="math inline">\(\mu_{l} \leq \sum_{j=1}^{p} \delta_j \leq \mu_{u}\)</span>controls the minimum and maximum number of <span class="math inline">\(x_j\)</span> variables where a change is admitted.</li>
+</ul>
+<p>The formulation of the problem involves different user-fixed parameters (<span class="math inline">\(\lambda\)</span>, <span class="math inline">\(\varepsilon\)</span>, <span class="math inline">\(f_{std}(\cdot)\)</span>, <span class="math inline">\(\mu_l\)</span>, <span class="math inline">\(\mu_u\)</span> and <span class="math inline">\(a\)</span>) that allow its adaptation to different scenarios, depending on the domain requirements.</p>
+</div>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+
+<img data-src="img/experiments_ideal_conterfactuals.png" style="width:50.0%" class="r-stretch quarto-figure-center"></section></section>
 <section>
 <section id="implementation" class="title-slide slide level1 center">
 <h1>Implementation</h1>
